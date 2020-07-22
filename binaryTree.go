@@ -8,39 +8,61 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// 迭代自上而下查找
-func generateTrees(n int) {
+// 递归自下而上查找
+func generateTrees(n int) []*TreeNode {
 
-	for i := 1; i <= n; i++ {
-		// 创建根节点
-		tmpNode := &TreeNode{i, nil, nil}
-
-		retArr := getTree(tmpNode, i, n)
-	}
-
-	fmt.Printf("reArr: %v", retArr)
-}
-
-func getTree(node *TreeNode, i int, n int) *TreeNode {
-	retArr := make([]*TreeNode, 0)
-
-	if i == 0 {
+	if n == 0 {
 		return nil
 	}
 
-	if n == 1 || i >= n {
-		return node
+	return getTree(1, n)
+}
+
+func getTree(start, end int) []*TreeNode {
+	retArr := make([]*TreeNode, 0)
+
+	// break func
+	if start > end {
+		return []*TreeNode{nil}
 	}
 
-	for 
+	// left node
+	for i := start; i <= end; i++ {
+		leftArr := getTree(start, i-1)
+		rightArr := getTree(i+1, end)
+		// create current node
+		for _, left := range leftArr {
+			for _, right := range rightArr {
+				curNode := &TreeNode{i, nil, nil}
+				curNode.Left = left
+				curNode.Right = right
+				retArr = append(retArr, curNode)
+			}
+		}
+	}
 
-	node.Left = getTree(&TreeNode{i - 1, nil, nil}, i-1, n)
+	return retArr
+}
 
-	node.Right = getTree(&TreeNode{i + 1, nil, nil}, i+1, n)
+// 迭代自上而下添加
+func generateTrees(n int) []*TreeNode {
 
-	return node
+	// return treeNode
+	retNode = make([]*TreeNode, 0)
+
+	if n == 0 {
+		return nil
+	}
+
+	// save status Node
+	for i := 1; i <= n; i++ {
+
+	}
+
+	return getTree(1, n)
 }
 
 func main() {
-	generateTrees(3)
+	ret := generateTrees(3)
+	fmt.Printf("arr: %v", ret[1])
 }
