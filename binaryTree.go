@@ -45,7 +45,7 @@ func getTree(start, end int) []*TreeNode {
 }
 
 // 迭代自上而下添加
-func generateTrees(n int) []*TreeNode {
+func generateTrees1(n int) []*TreeNode {
 
 	// return treeNode
 	retNode = make([]*TreeNode, 0)
