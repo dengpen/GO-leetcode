@@ -55,6 +55,8 @@ func generateTrees1(n int) []*TreeNode {
 	}
 
 	// save status Node
+	
+
 	for i := 1; i <= n; i++ {
 
 	}
